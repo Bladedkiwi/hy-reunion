@@ -1,0 +1,54 @@
+
+
+<div class="card shadow rounded">
+  <!--  "Planned event" type scheduled detail-->
+  <div #focus *ngIf="nextScheduleEventDetail?.plannedEvent" class="card-body clearfix bg-light bg-gradient">
+    <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+    <!--    Event Title and Assignment Data-->
+    <h2 class="card-title text-success">{{nextScheduleEventDetail?.plannedEvent?.name}}</h2>
+    <h5 class="card-subtitle m-0 fw-light text-dark fst-italic">{{nextScheduleEventDetail?.assignment}}</h5>
+    <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+    <!--    Image for Event if needed-->
+    <img *ngIf="nextScheduleEventDetail?.plannedEvent?.imageUrl"
+         [alt]="nextScheduleEventDetail?.plannedEvent?.name"
+         [src]="nextScheduleEventDetail?.plannedEvent?.imageUrl"
+         class="card-img-bottom clearfix" style="max-height:3.5em">
+    <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+    <!--    Event Time-->
+    <h5 class="card-subtitle mt-3 mb-3 fw-light">When: {{nextScheduleEventDetail?.time}}</h5>
+
+    <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+    <!--    Planned Event Details-->
+    <div *ngIf="nextScheduleEventDetail?.plannedEvent?.details" class="card ">
+      <!--      Event Activities Container-->
+      <h5 class="card-header text-success ">Activities</h5>
+      <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+      <ul *ngFor="let detail of nextScheduleEventDetail?.plannedEvent?.details" class="list-group list-group-flush">
+        <li class="list-group-item">{{detail}}</li>
+      </ul>
+    </div>
+    <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+  </div>
+  <!--  "Meal Event" type scheduled detail-->
+  <div *ngIf="nextScheduleEventDetail?.meal" class="card-body clearfix bg-light bg-gradient">
+    <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+    <!--    Event Title and Assignment-->
+    <h2 class="card-title text-success">{{nextScheduleEventDetail?.meal?.name}}</h2>
+    <h5 class="card-subtitle m-0 fw-light text-dark fst-italic">{{nextScheduleEventDetail?.assignment}}</h5>
+    <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+    <!--    Event Time-->
+    <h5 class="card-subtitle mt-4 mb-4 fw-light">When: {{nextScheduleEventDetail?.time}}</h5>
+    <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+    <!--    Meal Item Details-->
+    <div *ngIf="nextScheduleEventDetail?.meal?.mealItems" class="card ">
+      <!--      Meal Title-->
+      <h5 class="card-header text-success ">{{nextScheduleEventDetail?.meal?.mealRecipe}}</h5>
+      <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+      <!--      List of Ingredient Items for Meal-->
+      <ul *ngFor="let detail of nextScheduleEventDetail?.meal?.mealItems" class="list-group list-group-flush">
+        <li class="list-group-item">{{detail}}</li>
+      </ul>
+    </div>
+    <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+  </div>
+</div>
