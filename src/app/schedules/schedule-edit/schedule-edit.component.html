@@ -1,0 +1,186 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+<!--    Form for the Planned Event-->
+    <form id="card edit-plannedEvent" #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="editEvent?.plannedEvent">
+      <h2 class="card-title text-success">{{editEvent?.plannedEvent?.name}}</h2>
+      <h5 class="card-subtitle m-0 fw-light text-dark fst-italic">{{editEvent?.assignment}}</h5>
+      <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+      <h5 class="card-subtitle mt-4 mb-4 fw-light">When: {{editEvent?.time}}</h5>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="plannedEvent">Name:</label>
+          <input
+            type="text"
+            id="plannedEvent"
+            name="plannedEvent"
+            #plannedEvent = ngModel
+            class="form-control required"
+            size="120"
+            max="120"
+            [ngModel]="editEvent?.plannedEvent?.name"
+            required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="imgUrl">Image URL:</label>
+          <input
+            type="text"
+            id="imgUrl"
+            name="imgUrl"
+            #imgUrl = ngModel
+            class="form-control invalid"
+            size="150"
+            max="255"
+            [ngModel]="editEvent?.plannedEvent?.imageUrl">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="eventUrl">Event URL:</label>
+          <input
+            type="text"
+            id="eventUrl"
+            name="eventUrl"
+            class="form-control"
+            size="150"
+            [ngModel]="editEvent?.plannedEvent?.url">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="eventDetails">Url:</label>
+          <input
+            type="text"
+            id="eventDetails"
+            name="eventDetails"
+            #eventDetails = ngModel
+            class="form-control"
+            size="150"
+            max="255"
+            [ngModel]="editEvent?.plannedEvent?.details">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="eventSubject">Subject:</label>
+          <input
+            type="text"
+            id="eventSubject"
+            name="eventSubject"
+            #eventSubject = ngModel
+            class="form-control"
+            size="150"
+            max="255"
+            [ngModel]="editEvent?.plannedEvent?.subject">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="eventNotes">Notes:</label>
+          <input
+            type="text"
+            id="eventNotes"
+            name="eventNotes"
+            #eventNotes = ngModel
+            class="form-control"
+            size="150"
+            max="255"
+            [ngModel]="editEvent?.plannedEvent?.notes">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="eventLocation">Notes:</label>
+          <input
+            type="text"
+            id="eventLocation"
+            name="eventLocation"
+            #eventLocation = ngModel
+            class="form-control"
+            size="150"
+            max="255"
+            [ngModel]="editEvent?.plannedEvent?.location">
+        </div>
+      </div>
+<!--      End of form-->
+
+<!--Form for the Meal event-->
+      <div class="row">
+        <div class="col-xs-12 btn-toolbar">
+          <button class="btn btn-success" type="submit" [disabled]="f.invalid">Save</button>
+          <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+
+    </form>
+    <form class="card" id="edit-meal" #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="editEvent?.meal">
+      <h2 class="card-title text-success">{{editEvent?.meal?.name}}</h2>
+      <h5 class="card-subtitle m-0 fw-light text-dark fst-italic">{{editEvent?.assignment}}</h5>
+      <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+      <h5 class="card-subtitle mt-4 mb-4 fw-light">When: {{editEvent?.time}}</h5>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="meal">Event:</label>
+          <input
+            type="text"
+            id="meal"
+            name="meal"
+            #meal = ngModel
+            class="form-control required"
+            size="120"
+            max="120"
+            [ngModel]="editEvent?.meal?.name"
+            required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="mealRecipe">Recipe:</label>
+          <input
+            type="text"
+            id="mealRecipe"
+            name="mealRecipe"
+            #mealRecipe = ngModel
+            class="form-control invalid"
+            size="150"
+            max="255"
+            [ngModel]="editEvent?.meal?.mealRecipe">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="mealInstructions">Instructions:</label>
+          <input
+            type="text"
+            id="mealInstructions"
+            name="mealInstructions"
+            class="form-control"
+            size="150"
+            [ngModel]="editEvent?.meal?.mealInstructions">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="mealUrl">Url:</label>
+          <input
+            type="text"
+            id="mealUrl"
+            name="mealUrl"
+            #mealUrl = ngModel
+            class="form-control"
+            size="150"
+            max="255"
+            [ngModel]="editEvent?.meal?.mealUrl">
+        </div>
+          </div>
+      <div class="row">
+        <div class="col-xs-12 btn-toolbar">
+          <button class="btn btn-success" type="submit">Save</button>
+          <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+    </form>
+    <!--  End of Form-->
+  </div>
+</div>

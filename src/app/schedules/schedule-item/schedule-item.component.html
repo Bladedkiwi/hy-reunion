@@ -1,20 +1,21 @@
 <!--Each Scheduled Event Summary Item Link-->
+<!--  Event Title-->
 <a [routerLink]="nextScheduleEvent?.id"
    class="card clearfix link text-decoration-none text-black-50"
    data-toggle="dropdown"
    href="#"
    routerLinkActive="active">
-  <hr class="dropdown-divider m-0 bg-dark" style="padding: .2rem">
+  <hr class="dropdown-divider m-0" style="padding: .2rem;">
   <!--  Scheduled Event Summary-->
   <div class="card-header container-fluid px-1 pt-1">
-    <!--  Event Title-->
-    <h4 class="card-subtitle"> {{nextScheduleEvent?.meal?.name || nextScheduleEvent?.plannedEvent?.name}}</h4>
-    <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
+    <h4 class="card-header bg-success" style="color: antiquewhite;"> {{nextScheduleEvent?.meal?.name || nextScheduleEvent?.plannedEvent?.name}}</h4>
     <!--    Event Time-->
-    <h5 class="p-0">{{nextScheduleEvent?.time}}</h5>
-    Possible Event Image
+    <h5 class="p-0 card-text">{{nextScheduleEvent?.time}}</h5>
+    <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
+    <!--    Show Event Image-->
     <img *ngIf="nextScheduleEvent?.plannedEvent?.imageUrl"
          [alt]="nextScheduleEvent?.plannedEvent?.name"
          [src]="nextScheduleEvent?.plannedEvent?.imageUrl" class="card-img-bottom" style="max-height: 7em;">
   </div>
 </a>
+

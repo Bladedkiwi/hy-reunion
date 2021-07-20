@@ -17,6 +17,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 export class ScheduleDetailComponent implements OnInit, OnDestroy {
   nextScheduleEventDetail: ScheduleEvent | undefined;
   private scheduleDetailSub: Subscription | undefined;
+  addMenuItem = true;
 
   constructor(private scheduleService: ScheduleService, private actRoute: ActivatedRoute, private router: Router) {
   }
@@ -37,5 +38,9 @@ export class ScheduleDetailComponent implements OnInit, OnDestroy {
     )
 
   }
+
+  onDeleteSelected(): void {
+    console.log('Deleted');
+}
 
 }

@@ -1,20 +1,42 @@
-<div class="row">
-  <div *ngFor="let schedule of scheduleList" class="clearfix col-md-4 g-1">
-    <div class="card shadow rounded">
-      <!--      Large Column Titles: Wed, Thurs, Fri-->
-      <div class="card-body clearfix bg-light bg-gradient">
+<div class="container-fluid">
+  <div class="clearfix g-1 row">
+      <!--    Wednesday-->
+      <div class="card shadow rounded col-4">
+      <div class="card-body clearfix bg-light bg-gradient col">
         <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
-        <h2 class="card-header text-success px-0">{{schedule.name}}</h2>
+        <h2 class="card-header text-dark px-0">Wednesday</h2>
         <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
+        <hfr-schedule-item *ngFor="let scheduleEvent of getSpecificList('Wednesday')"
+                           [nextScheduleEvent]="scheduleEvent"
+                           class="list-group list-group-flush"></hfr-schedule-item>
+      </div>
+      </div>
+<!--    End of Wednesday Column-->
 
-        <!--        The group of scheduled events for the column-->
-        <div class="">
-          <!--          Dropdown Toggle-->
-          <hfr-schedule-item *ngFor="let sEvent of schedule.items"
-                             [nextScheduleEvent]="sEvent"
-                             class="list-group list-group-flush"></hfr-schedule-item>
-        </div>
+<!--    Thursday-->
+    <div class="card shadow rounded col-4">
+      <div class="card-body clearfix bg-light bg-gradient col">
+        <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
+        <h2 class="card-header text-dark px-0">Thursday</h2>
+        <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
+        <hfr-schedule-item *ngFor="let scheduleEvent of getSpecificList('Thursday')"
+                           [nextScheduleEvent]="scheduleEvent"
+                           class="list-group list-group-flush"></hfr-schedule-item>
       </div>
     </div>
-  </div>
-</div>
+<!--    End of Thursday Column-->
+
+<!--    Friday-->
+    <div class="card shadow rounded col-4">
+      <div class="card-body clearfix bg-light bg-gradient col">
+        <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
+        <h2 class="card-header text-dark px-0">Friday</h2>
+        <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
+        <hfr-schedule-item *ngFor="let scheduleEvent of getSpecificList('Friday')"
+                           [nextScheduleEvent]="scheduleEvent"
+                           class="list-group list-group-flush"></hfr-schedule-item>
+      </div>
+    </div>
+      <!--    End of Friday Column-->
+    </div>
+    </div>

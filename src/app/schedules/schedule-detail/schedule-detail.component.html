@@ -5,6 +5,7 @@
   <div #focus *ngIf="nextScheduleEventDetail?.plannedEvent" class="card-body clearfix bg-light bg-gradient">
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
     <!--    Event Title and Assignment Data-->
+    <a class="btn fa-pull-right btn-small btn-success" role="button"><i class="fas fa-pen-square"></i></a>
     <h2 class="card-title text-success">{{nextScheduleEventDetail?.plannedEvent?.name}}</h2>
     <h5 class="card-subtitle m-0 fw-light text-dark fst-italic">{{nextScheduleEventDetail?.assignment}}</h5>
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
@@ -18,37 +19,62 @@
     <h5 class="card-subtitle mt-3 mb-3 fw-light">When: {{nextScheduleEventDetail?.time}}</h5>
 
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+
     <!--    Planned Event Details-->
-    <div *ngIf="nextScheduleEventDetail?.plannedEvent?.details" class="card ">
+    <div *ngIf="nextScheduleEventDetail?.plannedEvent?.details" class="card">
+
       <!--      Event Activities Container-->
-      <h5 class="card-header text-success ">Activities</h5>
+      <h5 class="card-header text-success">Activities</h5>
       <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
       <ul *ngFor="let detail of nextScheduleEventDetail?.plannedEvent?.details" class="list-group list-group-flush">
-        <li class="list-group-item">{{detail}}</li>
+        <li class="list-group-item">
+          <a class="btn fa-pull-right p-1 m-0" type="button" (click)="onDeleteSelected()" ><i class="fas fa-trash btn-outline-success"></i></a>
+          {{detail}}</li>
       </ul>
+      <label class="sr-only" for="newEventItem"></label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button class="input-group-text btn-success"><i class="fas fa-plus-circle p-1 text-light"></i></button>
+        </div>
+        <input type="text" class="form-control" id="newEventItem" placeholder="Add New Item">
+      </div>
     </div>
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
   </div>
+
+
   <!--  "Meal Event" type scheduled detail-->
   <div *ngIf="nextScheduleEventDetail?.meal" class="card-body clearfix bg-light bg-gradient">
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
     <!--    Event Title and Assignment-->
+    <a class="btn fa-pull-right btn-small btn-success" type="button" routerLink="edit" ><i class="fas fa-pen-square"></i></a>
     <h2 class="card-title text-success">{{nextScheduleEventDetail?.meal?.name}}</h2>
     <h5 class="card-subtitle m-0 fw-light text-dark fst-italic">{{nextScheduleEventDetail?.assignment}}</h5>
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
     <!--    Event Time-->
     <h5 class="card-subtitle mt-4 mb-4 fw-light">When: {{nextScheduleEventDetail?.time}}</h5>
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+
     <!--    Meal Item Details-->
-    <div *ngIf="nextScheduleEventDetail?.meal?.mealItems" class="card ">
+    <div *ngIf="nextScheduleEventDetail?.meal?.mealItems" class="card">
       <!--      Meal Title-->
-      <h5 class="card-header text-success ">{{nextScheduleEventDetail?.meal?.mealRecipe}}</h5>
+      <h5 class="card-header text-success">{{nextScheduleEventDetail?.meal?.mealRecipe}}</h5>
       <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
       <!--      List of Ingredient Items for Meal-->
       <ul *ngFor="let detail of nextScheduleEventDetail?.meal?.mealItems" class="list-group list-group-flush">
-        <li class="list-group-item">{{detail}}</li>
+        <li class="list-group-item">
+          <a class="btn fa-pull-right p-1 m-0" type="button" (click)="onDeleteSelected()" ><i class="fas fa-trash btn-outline-success"></i></a>
+          {{detail}}</li>
       </ul>
+      <label class="sr-only" for="newMenuItem"></label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button class="input-group-text btn-success"><i class="fas fa-plus-circle p-1 text-light"></i></button>
+        </div>
+        <input type="text" class="form-control" id="newMenuItem" placeholder="Add New Item">
+      </div>
     </div>
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
   </div>
+
 </div>

@@ -16,7 +16,7 @@ export class SchedulesComponent implements OnInit, OnDestroy {
   constructor(private scheduleService: ScheduleService) { }
 
   ngOnInit(): void {
-    this.selectedScheduleSub = this.scheduleService.selectedScheduleItemEvent$
+    this.selectedScheduleSub = this.scheduleService.selectedScheduleEvent$
       .subscribe((schedule: ScheduleEvent) => {
         this.selectedScheduleItem = schedule;
       })

@@ -14,13 +14,13 @@ import {ScheduleEvent} from "../schedule-event.model";
  * Initializes the List for the Schedule Events
  */
 export class ScheduleListComponent implements OnInit {
-  scheduleList: Schedule[] = [];
-
+  scheduleEventList: ScheduleEvent[] | undefined;
   constructor(private scheduleService: ScheduleService) {
   }
 
   ngOnInit(): void {
-    this.scheduleList = this.scheduleService.getScheduleList();
+    this.scheduleEventList = this.scheduleService.getScheduleEventList()
+
   }
 
   /**
@@ -29,7 +29,10 @@ export class ScheduleListComponent implements OnInit {
    * @param scheduleEvent
    */
   onSelected(scheduleEvent: ScheduleEvent): void {
-    this.scheduleService.selectedScheduleItemEvent$.next(scheduleEvent);
+    this.scheduleService.selectedScheduleEvent$.next(scheduleEvent);
   }
 
+  getSpecificList(day: string) {
+    return this.scheduleEventList?.filter((sEvent) => sEvent.day === day);
+  }
 }
