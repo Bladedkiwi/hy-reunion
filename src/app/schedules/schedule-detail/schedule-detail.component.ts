@@ -3,6 +3,7 @@ import {ScheduleEvent} from "../schedule-event.model";
 import {Subscription} from "rxjs";
 import {ScheduleService} from "../schedule.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {WindRefService} from "../../wind-ref.service";
 
 @Component({
   selector: 'hfr-schedule-detail',
@@ -18,8 +19,9 @@ export class ScheduleDetailComponent implements OnInit, OnDestroy {
   nextScheduleEventDetail: ScheduleEvent | undefined;
   private scheduleDetailSub: Subscription | undefined;
   addMenuItem = true;
+  nativeWindow: any;
 
-  constructor(private scheduleService: ScheduleService, private actRoute: ActivatedRoute, private router: Router) {
+  constructor(private scheduleService: ScheduleService, private actRoute: ActivatedRoute, private router: Router, private windRef: WindRefService) {
   }
 
   ngOnDestroy(): void {
@@ -34,8 +36,9 @@ export class ScheduleDetailComponent implements OnInit, OnDestroy {
         if (params.id != null || undefined) {
           this.nextScheduleEventDetail = this.scheduleService.getScheduleEventById(params.id);
         }
-      }
-    )
+      });
+
+    this.nativeWindow = this.windRef.getNativeWindow();
 
   }
 

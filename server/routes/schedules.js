@@ -57,20 +57,21 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-
+  console.log('put has been accessed');
   // Find the desired contact by id
   ScheduleEvent.findOne({id: req.params.id})
     // Success
     .then(updateEvent => {
+      console.log(updateEvent.id);
       updateEvent.id = req.body.id;
       updateEvent.day = req.body.day;
-      updateEvent.assignment = req.body.assignment | '';
-      updateEvent.time = req.body.time | '';
+      updateEvent.assignment = req.body.assignment;
+      updateEvent.time = req.body.time;
       if (req.body.plannedEvent != null) {
         updateEvent.meal = null;
-        updateEvent.plannedEvent.name = req.body.plannedEvent.name | '';
-        updateEvent.plannedEvent.imageUrl = req.body.plannedEvent.imageUrl | '';
-        updateEvent.plannedEvent.url = req.body.plannedEvent.url | '';
+        updateEvent.plannedEvent.name = req.body.plannedEvent.name;
+        updateEvent.plannedEvent.imageUrl = req.body.plannedEvent.imageUrl;
+        updateEvent.plannedEvent.url = req.body.plannedEvent.url;
         updateEvent.plannedEvent.details = req.body.plannedEvent.details;
         updateEvent.plannedEvent.subject = req.body.plannedEvent.subject;
         updateEvent.plannedEvent.notes = req.body.plannedEvent.notes;
@@ -78,13 +79,13 @@ router.put('/:id', (req, res, next) => {
       }
       if (req.body.meal != null) {
         updateEvent.plannedEvent = null;
-        updateEvent.meal.name = req.body.meal.name | '';
-        updateEvent.meal.mealItems = req.body.meal.mealItems | '';
-        updateEvent.meal.mealRecipe = req.body.meal.mealRecipe | '';
-        updateEvent.meal.mealUrl = req.body.meal.mealUrl | '';
+        updateEvent.meal.name = req.body.meal.name;
+        updateEvent.meal.mealItems = req.body.meal.mealItems;
+        updateEvent.meal.mealRecipe = req.body.meal.mealRecipe;
+        updateEvent.meal.mealUrl = req.body.meal.mealUrl;
       }
-
-      updateEvent.updateOne({id: req.params.id}, updateEvent)
+      console.log(updateEvent);
+      ScheduleEvent.updateOne({id: req.params.id}, updateEvent)
         .then(result => {
           res.status(204).json({
             message: 'Event updated successfully'
@@ -107,9 +108,10 @@ router.put('/:id', (req, res, next) => {
 
 
 router.delete('/:id', (req, res) => {
+  console.log(req.params.id);
   ScheduleEvent.findOne({id: req.params.id})
     .then(scheduleEvent => {
-      scheduleEvent.deleteOne({id: req.params.id})
+      ScheduleEvent.deleteOne({id: req.params.id})
         .then(result => {
           res.status(204).json({
             message: "Scheduled Event deleted successfully"

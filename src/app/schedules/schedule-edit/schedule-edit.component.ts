@@ -74,6 +74,7 @@ export class ScheduleEditComponent implements OnInit, OnDestroy {
       if (this.editEvent.meal) {
         this.scheduleService.updateMealEventData(this.editEvent, this.mealForm.value);
       }
+      this.route.navigate(['/schedules/'+ this.editEvent.id]);
     }
 
   }

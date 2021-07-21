@@ -18,7 +18,7 @@ export class ScheduleService {
 
 
   constructor(private httpClient: HttpClient) {
-    this.scheduleEventList = MOCKSCHEDULES;
+    // this.scheduleEventList = MOCKSCHEDULES;
     httpClient.get<ScheduleEvent[]>(this.scheduleEndpoint).subscribe(
       (scheduleListDB) => {
         this.scheduleEventList = scheduleListDB;
@@ -94,9 +94,6 @@ export class ScheduleService {
   addEventMealItem(selectedItem: string, currentScheduledEvent: ScheduleEvent | undefined) {
     if (currentScheduledEvent && currentScheduledEvent?.meal) {
       currentScheduledEvent.meal.mealItems.push(selectedItem);
-      console.log(selectedItem);
-      console.log(currentScheduledEvent.meal.name);
-      console.log(currentScheduledEvent.meal.mealItems);
       this.updateMealEventData(currentScheduledEvent, 'addItem');
     }
     else {return;}
@@ -161,20 +158,21 @@ export class ScheduleService {
     if (!(pos < 0)) {
       editEvent.id = originalEvent.id;
 
-      if (value != ('addItem' || 'deleteItem') && editEvent?.plannedEvent) {
-        // Skips editing the event if adding or deleting an item from the event
+      if (value != ('addItem' || 'deleteItem')) {
+        if (editEvent?.plannedEvent) {
+          // Skips editing the event if adding or deleting an item from the event
           editEvent.plannedEvent.name = value.name == '' ? editEvent.plannedEvent.name : value.name;
-
           editEvent.plannedEvent.notes = value.notes == '' ? editEvent.plannedEvent.notes : value.notes;
           editEvent.plannedEvent.imageUrl = value.imageUrl == '' ? editEvent.plannedEvent.imageUrl : value.imageUrl;
           editEvent.plannedEvent.location = value.location == '' ? editEvent.plannedEvent.location : value.location;
           editEvent.plannedEvent.url = value.url == '' ? editEvent.plannedEvent.url : value.url;
           editEvent.plannedEvent.subject = value.subject == '' ? editEvent.plannedEvent.subject : value.subject;
+        }
       }
 
       this.httpClient.put((this.scheduleEndpoint + '/' + editEvent.id), editEvent, {headers: this.jsonHeader }).subscribe(
         (res) => {
-          console.log('connection made: updatePlannedEvent');
+          console.log(editEvent);
           this.scheduleEventList[pos] = editEvent;
           this.sortScheduleEventList();
         });
@@ -197,17 +195,19 @@ export class ScheduleService {
     if (!(pos < 0)) {
       editEvent.id = originalEvent.id;
 
-      if (value != ('addItem' || 'deleteItem') && editEvent?.meal) {
-        editEvent.meal.name = value.name == '' ? editEvent.meal.name : value.name;
-        editEvent.meal.mealRecipe = value.mealRecipe == '' ? editEvent.meal.mealRecipe : value.mealRecipe;
-        editEvent.meal.mealInstructions = value.mealInstructions == '' ? editEvent.meal.mealInstructions : value.mealInstructions;
-        editEvent.meal.mealUrl = value.mealUrl == '' ? editEvent.meal.mealUrl : value.mealUrl;
+      if (value != ('addItem' || 'deleteItem')) {
+        if (editEvent?.meal) {
+          editEvent.meal.name = value.name == '' ? editEvent.meal.name : value.name;
+          editEvent.meal.mealRecipe = value.mealRecipe == '' ? editEvent.meal.mealRecipe : value.mealRecipe;
+          editEvent.meal.mealInstructions = value.mealInstructions == '' ? editEvent.meal.mealInstructions : value.mealInstructions;
+          editEvent.meal.mealUrl = value.mealUrl == '' ? editEvent.meal.mealUrl : value.mealUrl;
+        }
       }
 
 
       this.httpClient.put((this.scheduleEndpoint + '/' + editEvent.id), editEvent, {headers: this.jsonHeader }).subscribe(
         (res) => {
-          console.log('connection made: updatePlannedEvent');
+          console.log(editEvent);
           this.scheduleEventList[pos] = editEvent;
           this.sortScheduleEventList();
         });
