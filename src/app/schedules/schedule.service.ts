@@ -196,19 +196,17 @@ export class ScheduleService {
     if (!(pos < 0)) {
       editEvent.id = originalEvent.id;
 
-      if (value != ('addItem' || 'deleteItem')) {
-        if (editEvent?.meal) {
+      if (value?.name && editEvent?.meal)  {
           editEvent.meal.name = value.name == '' ? editEvent.meal.name : value.name;
           editEvent.meal.mealRecipe = value.mealRecipe == '' ? editEvent.meal.mealRecipe : value.mealRecipe;
           editEvent.meal.mealInstructions = value.mealInstructions == '' ? editEvent.meal.mealInstructions : value.mealInstructions;
           editEvent.meal.mealUrl = value.mealUrl == '' ? editEvent.meal.mealUrl : value.mealUrl;
-        }
       }
 
 
       this.httpClient.put((this.scheduleEndpoint + '/' + editEvent.id), editEvent, {headers: this.jsonHeader }).subscribe(
         (res) => {
-          console.log(editEvent);
+          // console.log(editEvent);
           this.scheduleEventList[pos] = editEvent;
           this.sortScheduleEventList();
         });
