@@ -4,6 +4,7 @@
       <div class="card shadow rounded col-4">
       <div class="card-body clearfix bg-light bg-gradient col">
         <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
+        <a class="btn fa-pull-right btn-small btn-success" role="button" (click)="createPlannedEvent('Wednesday')"><i class="fas fa-plus"></i></a>
         <h2 class="card-header text-dark px-0">Wednesday</h2>
         <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
         <hfr-schedule-item *ngFor="let scheduleEvent of getSpecificList('Wednesday')"
@@ -17,6 +18,7 @@
     <div class="card shadow rounded col-4">
       <div class="card-body clearfix bg-light bg-gradient col">
         <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
+        <a class="btn fa-pull-right btn-small btn-success" role="button" (click)="createPlannedEvent('Thursday')"><i class="fas fa-plus"></i></a>
         <h2 class="card-header text-dark px-0">Thursday</h2>
         <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
         <hfr-schedule-item *ngFor="let scheduleEvent of getSpecificList('Thursday')"
@@ -30,6 +32,7 @@
     <div class="card shadow rounded col-4">
       <div class="card-body clearfix bg-light bg-gradient col">
         <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
+        <a class="btn fa-pull-right btn-small btn-success" role="button" (click)="createPlannedEvent('Friday')"><i class="fas fa-plus"></i></a>
         <h2 class="card-header text-dark px-0">Friday</h2>
         <hr class="dropdown-divider m-0 bg-success" style="padding: .1rem">
         <hfr-schedule-item *ngFor="let scheduleEvent of getSpecificList('Friday')"

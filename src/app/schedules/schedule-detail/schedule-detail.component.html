@@ -1,20 +1,26 @@
-
-
 <div class="card shadow rounded">
   <!--  "Planned event" type scheduled detail-->
   <div #focus *ngIf="nextScheduleEventDetail?.plannedEvent" class="card-body clearfix bg-light bg-gradient">
+
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+    <!--    Delete Event Button-->
+    <a class="btn fa-pull-right btn-small btn-success" role="button" (click)="onDeletePlannedEvent()"><i class="fas fa-trash"></i></a>
+    <!--    Edit Event Button-->
+    <a class="btn fa-pull-right btn-small btn-success" role="button" routerLink="edit"><i class="fas fa-pen-square"></i></a>
+
     <!--    Event Title and Assignment Data-->
-    <a class="btn fa-pull-right btn-small btn-success" role="button"><i class="fas fa-pen-square"></i></a>
     <h2 class="card-title text-success">{{nextScheduleEventDetail?.plannedEvent?.name}}</h2>
     <h5 class="card-subtitle m-0 fw-light text-dark fst-italic">{{nextScheduleEventDetail?.assignment}}</h5>
+
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+
     <!--    Image for Event if needed-->
     <img *ngIf="nextScheduleEventDetail?.plannedEvent?.imageUrl"
          [alt]="nextScheduleEventDetail?.plannedEvent?.name"
          [src]="nextScheduleEventDetail?.plannedEvent?.imageUrl"
          class="card-img-bottom clearfix" style="max-height:3.5em">
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+
     <!--    Event Time-->
     <h5 class="card-subtitle mt-3 mb-3 fw-light">When: {{nextScheduleEventDetail?.time}}</h5>
 
@@ -28,31 +34,45 @@
       <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
       <ul *ngFor="let detail of nextScheduleEventDetail?.plannedEvent?.details" class="list-group list-group-flush">
         <li class="list-group-item">
-          <a class="btn fa-pull-right p-1 m-0" type="button" (click)="onDeleteSelected()" ><i class="fas fa-trash btn-outline-success"></i></a>
+          <!--        Each Item detail-->
+          <a (click)="onDeletePlannedItem(detail)" class="btn fa-pull-right p-1 m-0" type="button"><i
+            class="fas fa-trash btn-outline-success"></i></a>
           {{detail}}</li>
       </ul>
+      <!--      Input for adding a new item detail to the current plannedEvent-->
       <label class="sr-only" for="newEventItem"></label>
       <div class="input-group">
+        <!--        Add Button Icon-->
         <div class="input-group-prepend">
-          <button class="input-group-text btn-success"><i class="fas fa-plus-circle p-1 text-light"></i></button>
+          <button class="input-group-text btn-success" (click)="onAddPlannedItem(eventItem.value)"><i class="fas fa-plus-circle p-1 text-light"></i></button>
         </div>
-        <input type="text" class="form-control" id="newEventItem" placeholder="Add New Item">
+
+        <input class="form-control" id="newEventItem" placeholder="Add New Item" type="text" #eventItem>
+
       </div>
     </div>
+
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+
   </div>
 
 
   <!--  "Meal Event" type scheduled detail-->
   <div *ngIf="nextScheduleEventDetail?.meal" class="card-body clearfix bg-light bg-gradient">
+
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+
+    <!--    Edit Event Button-->
+    <a class="btn fa-pull-right btn-small btn-success" routerLink="edit" type="button"><i class="fas fa-pen-square"></i></a>
     <!--    Event Title and Assignment-->
-    <a class="btn fa-pull-right btn-small btn-success" type="button" routerLink="edit" ><i class="fas fa-pen-square"></i></a>
     <h2 class="card-title text-success">{{nextScheduleEventDetail?.meal?.name}}</h2>
     <h5 class="card-subtitle m-0 fw-light text-dark fst-italic">{{nextScheduleEventDetail?.assignment}}</h5>
+
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+
     <!--    Event Time-->
     <h5 class="card-subtitle mt-4 mb-4 fw-light">When: {{nextScheduleEventDetail?.time}}</h5>
+
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
 
     <!--    Meal Item Details-->
@@ -62,19 +82,26 @@
       <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
       <!--      List of Ingredient Items for Meal-->
       <ul *ngFor="let detail of nextScheduleEventDetail?.meal?.mealItems" class="list-group list-group-flush">
+        <!--        Each Item detail-->
         <li class="list-group-item">
-          <a class="btn fa-pull-right p-1 m-0" type="button" (click)="onDeleteSelected()" ><i class="fas fa-trash btn-outline-success"></i></a>
+          <a (click)="onDeleteMealItem(detail)" class="btn fa-pull-right p-1 m-0" type="button"><i
+            class="fas fa-trash btn-outline-success"></i></a>
           {{detail}}</li>
       </ul>
+      <!--      Input for adding a new item detail to the current mealItems-->
       <label class="sr-only" for="newMenuItem"></label>
       <div class="input-group">
+        <!--        Add Button Icon-->
         <div class="input-group-prepend">
-          <button class="input-group-text btn-success"><i class="fas fa-plus-circle p-1 text-light"></i></button>
+          <button class="input-group-text btn-success" (click)="onAddMealItem(mealItem.value)"><i class="fas fa-plus-circle p-1 text-light"></i></button>
         </div>
-        <input type="text" class="form-control" id="newMenuItem" placeholder="Add New Item">
+
+        <input class="form-control" id="newMenuItem" placeholder="Add New Item" type="text" #mealItem>
       </div>
     </div>
+
     <hr class="dropdown-divider m-0 bg-success rounded-pill" style="padding: .1rem">
+
   </div>
 
 </div>

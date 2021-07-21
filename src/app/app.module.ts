@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SchedulesComponent } from './schedules/schedules.component';
@@ -9,8 +9,7 @@ import { ScheduleItemComponent } from './schedules/schedule-item/schedule-item.c
 import { ScheduleDetailComponent } from './schedules/schedule-detail/schedule-detail.component';
 import { HeaderComponent } from "./header.component";
 import { ScheduleEditComponent } from './schedules/schedule-edit/schedule-edit.component';
-import {DropdownMenuDirective} from "./shared/dropdown.directive";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -21,13 +20,14 @@ import {FormsModule} from "@angular/forms";
     ScheduleDetailComponent,
     HeaderComponent,
     ScheduleListComponent,
-    ScheduleEditComponent,
-    DropdownMenuDirective
+    ScheduleEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

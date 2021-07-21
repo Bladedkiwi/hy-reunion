@@ -39,8 +39,48 @@ export class ScheduleDetailComponent implements OnInit, OnDestroy {
 
   }
 
-  onDeleteSelected(): void {
-    console.log('Deleted');
+  /**
+   * onDeleteMealItem
+   * Deletes the selected meal item from the meal object
+   * @param selectedDetail
+   */
+  onAddMealItem(selectedDetail: string): void {
+    this.scheduleService.addEventMealItem(selectedDetail, this.nextScheduleEventDetail);
+  }
+
+  /**
+   * onDeletePlannedItem
+   * Deletes the selected event item from the plannedEvent object
+   * @param selectedDetail
+   */
+  onAddPlannedItem(selectedDetail: string): void {
+    this.scheduleService.addEventPlannedItem(selectedDetail, this.nextScheduleEventDetail);
+  }
+
+  /**
+   * onDeleteMealItem
+   * Deletes the selected meal item from the meal object
+   * @param selectedDetail
+   */
+  onDeleteMealItem(selectedDetail: string): void {
+    this.scheduleService.deleteEventMealItem(selectedDetail, this.nextScheduleEventDetail);
 }
 
+  /**
+   * onDeletePlannedItem
+   * Deletes the selected event item from the plannedEvent object
+   * @param selectedDetail
+   */
+  onDeletePlannedItem(selectedDetail: string): void {
+    this.scheduleService.deleteEventPlannedItem(selectedDetail, this.nextScheduleEventDetail);
+  }
+
+  /**
+   * OnDeletePlannedEvent
+   * Deletes planned event from the database and navigates back to the schedules page
+   */
+  onDeletePlannedEvent() {
+    this.scheduleService.deletePlannedEvent(this.nextScheduleEventDetail);
+    this.router.navigate(['/schedules']);
+  }
 }

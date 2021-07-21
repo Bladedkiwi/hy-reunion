@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Schedule } from "./schedule.model";
 import { ScheduleEvent } from "./schedule-event.model";
 import { ScheduleService } from "./schedule.service";
 import { Subscription } from "rxjs";

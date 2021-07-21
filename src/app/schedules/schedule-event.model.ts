@@ -1,5 +1,7 @@
+import {FormGroup} from "@angular/forms";
+
 export class ScheduleEvent {
-  constructor (
+  constructor(
     public id: string,
     public day: string,
     public assignment: string,
@@ -10,7 +12,8 @@ export class ScheduleEvent {
       mealRecipe: string,
       mealInstructions: string,
       mealUrl: string
-    },
+
+    } | null,
     public plannedEvent: {
       name: string,
       imageUrl: string,
@@ -19,5 +22,5 @@ export class ScheduleEvent {
       subject: string,
       notes: string,
       location: string
-    }) {}
+    } | null) {}
 }
