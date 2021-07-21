@@ -69,7 +69,7 @@ router.put('/:id', (req, res, next) => {
       updateEvent.time = req.body.time;
       if (req.body.plannedEvent != null) {
         updateEvent.meal = null;
-        updateEvent.plannedEvent.name = req.body.plannedEvent.name;
+        updateEvent.plannedEvent.name = req.body.plannedEvent.name ?? updateEvent.plannedEvent.name;
         updateEvent.plannedEvent.imageUrl = req.body.plannedEvent.imageUrl;
         updateEvent.plannedEvent.url = req.body.plannedEvent.url;
         updateEvent.plannedEvent.details = req.body.plannedEvent.details;
@@ -80,11 +80,10 @@ router.put('/:id', (req, res, next) => {
       if (req.body.meal != null) {
         updateEvent.plannedEvent = null;
         updateEvent.meal.name = req.body.meal.name;
-        updateEvent.meal.mealItems = req.body.meal.mealItems;
+        updateEvent.meal.mealItems = req.body.meal.mealItems | '';
         updateEvent.meal.mealRecipe = req.body.meal.mealRecipe;
         updateEvent.meal.mealUrl = req.body.meal.mealUrl;
       }
-      console.log(updateEvent);
       ScheduleEvent.updateOne({id: req.params.id}, updateEvent)
         .then(result => {
           res.status(204).json({

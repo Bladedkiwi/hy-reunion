@@ -154,25 +154,26 @@ export class ScheduleService {
     const originalEvent = this.getScheduleEventById(editEvent.id);
 
     pos = this.scheduleEventList.indexOf(originalEvent);
-    console.log(pos);
+    // console.log(pos);
     if (!(pos < 0)) {
       editEvent.id = originalEvent.id;
 
-      if (value != ('addItem' || 'deleteItem')) {
-        if (editEvent?.plannedEvent) {
+
+      // if (value != ('addItem' || 'deleteItem')) {
+        if (value?.name && editEvent?.plannedEvent) {
           // Skips editing the event if adding or deleting an item from the event
-          editEvent.plannedEvent.name = value.name == '' ? editEvent.plannedEvent.name : value.name;
-          editEvent.plannedEvent.notes = value.notes == '' ? editEvent.plannedEvent.notes : value.notes;
-          editEvent.plannedEvent.imageUrl = value.imageUrl == '' ? editEvent.plannedEvent.imageUrl : value.imageUrl;
-          editEvent.plannedEvent.location = value.location == '' ? editEvent.plannedEvent.location : value.location;
-          editEvent.plannedEvent.url = value.url == '' ? editEvent.plannedEvent.url : value.url;
-          editEvent.plannedEvent.subject = value.subject == '' ? editEvent.plannedEvent.subject : value.subject;
+          editEvent.plannedEvent.name = value.name === '' ? editEvent.plannedEvent.name : value.name;
+          editEvent.plannedEvent.notes = value.notes === '' ? editEvent.plannedEvent.notes : value.notes;
+          editEvent.plannedEvent.imageUrl = value.imageUrl === '' ? editEvent.plannedEvent.imageUrl : value.imageUrl;
+          editEvent.plannedEvent.location = value.location === '' ? editEvent.plannedEvent.location : value.location;
+          editEvent.plannedEvent.url = value.url === '' ? editEvent.plannedEvent.url : value.url;
+          editEvent.plannedEvent.subject = value.subject === '' ? editEvent.plannedEvent.subject : value.subject;
         }
-      }
+      // }
 
       this.httpClient.put((this.scheduleEndpoint + '/' + editEvent.id), editEvent, {headers: this.jsonHeader }).subscribe(
         (res) => {
-          console.log(editEvent);
+          // console.log(editEvent);
           this.scheduleEventList[pos] = editEvent;
           this.sortScheduleEventList();
         });
